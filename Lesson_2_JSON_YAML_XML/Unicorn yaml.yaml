@@ -1,0 +1,14 @@
+---
+name: "Uno"
+age: "2"
+hasOneHorn: "true"
+favoriteFoods: 
+- "Peaches"
+- "Strawberry"
+isInCartoons: 
+- name: "My Little Pony"
+  yearOfRelease: "2015"
+  translatedIntoUkrainian: "true"
+- name: "Nella the Princess Knight"
+  yearOfRelease: "2019"
+  translatedIntoUkrainian: "false"
