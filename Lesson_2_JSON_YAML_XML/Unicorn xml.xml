@@ -1,0 +1,17 @@
+<root>
+   <name>Uno</name>
+   <age>2</age>
+   <hasOneHorn>true</hasOneHorn>
+   <favoriteFoods>Peaches</favoriteFoods>
+   <favoriteFoods>Strawberry</favoriteFoods>
+   <isInCartoons>
+      <name>My Little Pony</name>
+      <yearOfRelease>2015</yearOfRelease>
+      <translatedIntoUkrainian>true</translatedIntoUkrainian>
+   </isInCartoons>
+   <isInCartoons>
+      <name>Nella the Princess Knight</name>
+      <yearOfRelease>2019</yearOfRelease>
+      <translatedIntoUkrainian>false</translatedIntoUkrainian>
+   </isInCartoons>
+</root>
