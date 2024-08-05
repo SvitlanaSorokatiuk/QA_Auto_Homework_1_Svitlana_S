@@ -33,19 +33,24 @@ public class CircusPerformer {
             this.name = name;
             this.act = act;
             this.experience = experience;
-            System.out.print("\nНового артиста " + name + "\nз вивом виступу " + act + "\nз досвідом " + experience + " років \nуспішно додано до цирку");
+            System.out.print("\nНового артиста " + name + "\nз видом виступу " + act + "\nз досвідом " + experience + " років \nуспішно додано до цирку");
            } catch (InvalidExperienceException e) {
-            throw new RuntimeException(e);
+            System.out.print("Помилка додавання артиста:" + e.getMessage());
         }
 
     }
 
     public void validateExperience (int experience) throws InvalidExperienceException {
         if (experience > 0 && experience < 50) {
-            System.out.print("Артист має необхідний досвід");
+            System.out.print("\nАртист має необхідний досвід");
         } else {
-            throw new InvalidExperienceException("Досвід артиста не може бути менше 0 або більше 50 років");
+            throw new InvalidExperienceException("\nДосвід артиста не може бути менше 0 або більше 50 років");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "\nІм’я артиста: " + name + ", вид виступу: " + act + ", досвід: " + experience + " років";
     }
 
 }
