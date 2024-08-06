@@ -1,44 +1,53 @@
-public class Message implements MessageInterface{
-    String senderMessage;
-    String receiverMessage;
-    String textMessage;
-    MessageStatuses messageStatus;
+public class Message implements MessageInterface {
+    private User sender;
+    private User receiver;
+    private String textMessage;
+    private MessageStatuses status;
 
-    public Message (String senderMessage, String receiverMessage, String textMessage) {
-        this.senderMessage = senderMessage;
-        this.receiverMessage = receiverMessage;
-        this.textMessage = textMessage;
-        setMessageStatus(MessageStatuses.SENT);
+    public Message (User sender, User receiver, String textMessage) {
+        this.setSender(sender);
+        this.setReceiver(receiver);
+        this.setTextMessage(textMessage);
+    }
+
+
+    @Override
+    public User getSender() {
+        return this.sender;
     }
 
     @Override
-    public String getSenderMessage() {
-        return senderMessage;
+    public User getReceiver() {
+        return this.receiver;
     }
 
     @Override
-    public String getReceiverMessage() {
-        return receiverMessage;
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    @Override
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 
     @Override
     public String getTextMessage() {
-        return textMessage;
+        return this.textMessage;
     }
 
     @Override
-    public MessageStatuses getMessageStatus() {
-        return messageStatus;
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
 
     @Override
-    public void setMessageStatus(MessageStatuses status) {
-        this.messageStatus = status;
+    public MessageStatuses getStatus() {
+        return status;
     }
 
-    };
-
-
-
-
-
+    @Override
+    public void setStatus(MessageStatuses status) {
+        this.status = status;
+    }
+}

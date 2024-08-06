@@ -3,18 +3,23 @@
 public class Main {
     public static void main(String[] args) {
 
-        User oksana = new User("Oksana");
+        User katia = new User("Katia");
         User ivan = new User("Ivan");
-        User roman = new User("Roman");
+        User petro = new User("Petro");
 
-        oksana.addContact("Ivan");
-        oksana.addContact("Roman");
+        katia.addContact(ivan);
+        katia.addContact(petro);
+        ivan.addContact(katia);
+        ivan.addContact(petro);
 
-        ivan.addContact("Oksana");
-        ivan.addContact("Roman");
+        System.out.print(katia);
+        System.out.print(ivan);
+        System.out.print(petro);
 
-        roman.addContact("Oksana");
-        roman.addContact("Ivan");
+        //Message mes = new Message("katia", "ivan", "Hello!");
+        //katia.listOfMessages;
+
+
 
     }
 }

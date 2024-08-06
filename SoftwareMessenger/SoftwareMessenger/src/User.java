@@ -3,50 +3,66 @@ import java.util.HashSet;
 
 public class User implements UserInterface{
 
-    private String userName;
-    HashSet<String> contactList = new HashSet<>();
-    ArrayList<String> listOfMessages = new ArrayList<>();
+    private String name;
+    HashSet<UserInterface> contacts = new HashSet<>();
+    ArrayList<MessageStatuses> massages = new ArrayList<>();
 
-    public User(String userName) {
-        this.userName = userName;
-        //this.contactList =  new HashSet<>();
-        //this.listOfMessages = new ArrayList<Message>();
+    public User(String name) {
+        this.name = name;
     }
 
     @Override
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
-    public HashSet<String> getContactList() {
-        return contactList;
+    public HashSet<UserInterface> getContactList() {
+        return contacts;
     }
 
     @Override
-    public ArrayList<String> getListOfMessages() {
-        return listOfMessages;
+    public ArrayList<Message> messages() {
+        return messages();
     }
 
     @Override
-    public void addContact(String contactName) {
-        contactList.add(contactName);
-        System.out.println("Контакт додано");
+    public void addContact(UserInterface user) {
+        contacts.add(user);
+        //System.out.println("Користувачу " + name + " додано контакт " + user);
     }
 
     @Override
-    public void sentMessage(MessageInterface receiverMessage, String textMessage) {
-        Message message = new Message (this.userName, receiverMessage.getReceiverMessage(), textMessage);
-        message.setMessageStatus(MessageStatuses.SENT);
-        listOfMessages.add(String.valueOf(message));
+    public void sentMessage(UserInterface receiver, String textMessage) {
+        if (receiver instanceof User) {
+            User recepient = (User) receiver;
+        } else {
+            throw new IllegalArgumentException("Помилка відправлення повідомлення");
+        }
+        Message messsage = new Message (this, recepient, textMessage);
+        receiver.receiveMessage(messsage);
+        //message.setStatus(MessageStatuses.SENT);
+        //massages.add(message);
         //receiverMessage.getTextMessage(String userName, String textMessage);
     }
 
     @Override
-    public void receiveMessage(MessageInterface senderMessage, String textMessage) {
-        Message message = new Message(this.userName, senderMessage.getSenderMessage(), textMessage);
-        listOfMessages.add(String.valueOf(message));
-        message.setMessageStatus(MessageStatuses.RECEIVED);
-        System.out.print("Отримано повідомлення від " + senderMessage);
+    public void receiveMessage(MessageInterface sender, String text) {
+        Message message = new Message(this.name, sender.getSender(), text);
+        messages().add(message);
+        message.setStatus(MessageStatuses.RECEIVED);
+        System.out.print("Отримано повідомлення від " + sender);
+    }
+
+    @Override
+    public String toString() {
+        System.out.print("\nІм’я користувача: " + this.name);
+        System.out.print("\nСписок контактів користувача: ");
+        this.contacts.forEach(contact -> System.out.print(" " + contact.getName()));
+        return "\n======";
     }
 }

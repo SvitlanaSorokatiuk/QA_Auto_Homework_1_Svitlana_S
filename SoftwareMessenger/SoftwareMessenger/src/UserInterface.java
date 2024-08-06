@@ -2,14 +2,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public interface UserInterface {
-    String getUserName();
-    HashSet<String> getContactList();
-    ArrayList<String> getListOfMessages();
-
-    void addContact(String contactName);
-
-    void sentMessage(MessageInterface receiverMessage, String textMessage);
-
-    void receiveMessage(MessageInterface senderMessage, String textMessage);
+    String getName();
+    public void setName(String name);
+    HashSet<UserInterface> getContactList();
+    ArrayList<MessageInterface> getListOfMessages();
+    public void addContact(UserInterface user);
+    public void sentMessage(UserInterface receiver, String textMessage);
+    public void receiveMessage(MessageInterface sender, String textMessage);
 
 }
