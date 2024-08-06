@@ -40,6 +40,7 @@ public class CircusPerformer {
 
     }
 
+    //Метод для перевірки досвіду артиста
     public void validateExperience (int experience) throws InvalidExperienceException {
         if (experience > 0 && experience < 50) {
             System.out.print("\nАртист має необхідний досвід");
@@ -48,6 +49,7 @@ public class CircusPerformer {
         }
     }
 
+    @RunImmediately(times = 2)
     @Override
     public String toString() {
         return "\nІм’я артиста: " + name + ", вид виступу: " + act + ", досвід: " + experience + " років";

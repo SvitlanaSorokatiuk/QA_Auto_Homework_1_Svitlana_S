@@ -16,6 +16,7 @@ public class Circus<T> {
         return new ArrayList<>(performers);
     }
 
+    //Метод для збереження списку артистів у файл
     public void saveToFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (T performer : performers) {
@@ -26,7 +27,7 @@ public class Circus<T> {
             System.out.print("\nПомилка запису файлу");
         }
     }
-
+    //Метод для завантаження списку артистів з файлу
     public void loadFromFile(String filename) {
         performers.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
