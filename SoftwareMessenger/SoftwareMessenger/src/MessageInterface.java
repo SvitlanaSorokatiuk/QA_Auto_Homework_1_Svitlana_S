@@ -1,8 +1,8 @@
 public interface MessageInterface {
-    User getSender();
-    User getReceiver();
-    void  setSender(User sender);
-    void setReceiver(User receiver);
+    UserInterface getSender();
+    UserInterface getReceiver();
+    void  setSender(UserInterface sender);
+    void setReceiver(UserInterface receiver);
     String getTextMessage();
     void setTextMessage(String text);
     MessageStatuses getStatus();

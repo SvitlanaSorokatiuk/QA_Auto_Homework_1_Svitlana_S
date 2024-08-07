@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class User implements UserInterface{
+public class User implements UserInterface {
 
     private String name;
     HashSet<UserInterface> contacts = new HashSet<>();
-    ArrayList<MessageStatuses> massages = new ArrayList<>();
+    ArrayList<Message> massages = new ArrayList<>();
 
     public User(String name) {
         this.name = name;
@@ -26,43 +26,39 @@ public class User implements UserInterface{
     }
 
     @Override
-    public ArrayList<Message> messages() {
-        return messages();
+    public ArrayList<Message> getListOfMessages() {
+        return massages;
     }
 
     @Override
     public void addContact(UserInterface user) {
         contacts.add(user);
-        //System.out.println("Користувачу " + name + " додано контакт " + user);
+        System.out.println("Користувачу " + name + " додано контакт " + user.getName());
     }
 
     @Override
     public void sentMessage(UserInterface receiver, String textMessage) {
-        if (receiver instanceof User) {
-            User recepient = (User) receiver;
-        } else {
-            throw new IllegalArgumentException("Помилка відправлення повідомлення");
-        }
-        Message messsage = new Message (this, recepient, textMessage);
-        receiver.receiveMessage(messsage);
-        //message.setStatus(MessageStatuses.SENT);
+        Message message = new Message(this, receiver, textMessage);
         //massages.add(message);
-        //receiverMessage.getTextMessage(String userName, String textMessage);
+        //message.setStatus(MessageStatuses.SENT);
+        receiver.receiveMessage(message);
+        System.out.print("\nПовідомлення надіслано користувачу " + receiver.getName());
     }
 
     @Override
-    public void receiveMessage(MessageInterface sender, String text) {
-        Message message = new Message(this.name, sender.getSender(), text);
-        messages().add(message);
+    public void receiveMessage(Message message) {
+        massages.add(message);
         message.setStatus(MessageStatuses.RECEIVED);
-        System.out.print("Отримано повідомлення від " + sender);
+        //System.out.print("Отримано повідомлення від користувача " + message.getSender());
     }
 
-    @Override
-    public String toString() {
-        System.out.print("\nІм’я користувача: " + this.name);
-        System.out.print("\nСписок контактів користувача: ");
-        this.contacts.forEach(contact -> System.out.print(" " + contact.getName()));
-        return "\n======";
+    public void readMessage() {
+        for (Message massage : massages) {
+            if (massage.getStatus() == MessageStatuses.RECEIVED) {
+                massage.setStatus(MessageStatuses.READ);
+                //System.out.println("Повідомлення прочитано");
+            }
+        }
     }
 }
+

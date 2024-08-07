@@ -1,33 +1,32 @@
 public class Message implements MessageInterface {
-    private User sender;
-    private User receiver;
+    private UserInterface sender;
+    private UserInterface receiver;
     private String textMessage;
     private MessageStatuses status;
 
-    public Message (User sender, User receiver, String textMessage) {
+    public Message (UserInterface sender, UserInterface receiver, String textMessage) {
         this.setSender(sender);
         this.setReceiver(receiver);
         this.setTextMessage(textMessage);
     }
 
-
     @Override
-    public User getSender() {
+    public UserInterface getSender() {
         return this.sender;
     }
 
     @Override
-    public User getReceiver() {
+    public UserInterface getReceiver() {
         return this.receiver;
     }
 
     @Override
-    public void setSender(User sender) {
+    public void setSender(UserInterface sender) {
         this.sender = sender;
     }
 
     @Override
-    public void setReceiver(User receiver) {
+    public void setReceiver(UserInterface receiver) {
         this.receiver = receiver;
     }
 
@@ -49,5 +48,15 @@ public class Message implements MessageInterface {
     @Override
     public void setStatus(MessageStatuses status) {
         this.status = status;
+    }
+
+   @Override
+   public String toString() {
+      return "\nMessage{" +
+              "sender=" + sender.getName() +
+              ", receiver=" + receiver.getName() +
+             ", textMessage='" + textMessage + '\'' +
+          ", status=" + status +
+              '}';
     }
 }

@@ -12,14 +12,28 @@ public class Main {
         ivan.addContact(katia);
         ivan.addContact(petro);
 
-        System.out.print(katia);
-        System.out.print(ivan);
-        System.out.print(petro);
+        katia.sentMessage(ivan, "Hello, Ivan!");
+        ivan.sentMessage(katia, "Hello, Katia!");
+        katia.sentMessage(ivan, "How are you?");
+        ivan.sentMessage(katia, "I’m fine!");
 
-        //Message mes = new Message("katia", "ivan", "Hello!");
-        //katia.listOfMessages;
+        System.out.print("\nСписок повідомлень Каті");
+        for (Message message : katia.getListOfMessages()) {
+            System.out.print(message);
+        }
+
+        System.out.print("\nСписок повідомлень Івана");
+        for (Message message : ivan.getListOfMessages()) {
+            System.out.print(message);
+        }
+
+        katia.readMessage();
+
+        System.out.print("\nСписок повідомлень Каті");
+        for (Message message : katia.getListOfMessages()) {
+            System.out.print(message);
+        }
 
 
-
-    }
+                }
 }
